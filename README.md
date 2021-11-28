@@ -31,3 +31,4 @@ product management
 3. **/app/deleteProduct** : _Delete product_
 4. **/app/updateProduct** : _Update product_
 5. **/app/saveCustomer** : _User Registration_
+6. **/app/login** : _Login_
