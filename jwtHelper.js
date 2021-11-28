@@ -1,11 +1,11 @@
 let jwt = require('jsonwebtoken');
-
+let config = require('./config.json');
 let jwtFunction = {}
 
 jwtFunction.getToken = function(payload, secretKey){
     return new Promise((res,rej)=> {
         jwt.sign(payload, secretKey, {
-                    expiresIn: 60
+                    expiresIn: config.jwt.expiration
                 }, function (err, token) {
             if (err) rej(err)
             res(token)

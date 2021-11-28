@@ -6,5 +6,9 @@
         "password":"root",
         "database":"productmanagement"
         
+    },
+    "jwt":{
+        "SECRET_KEY":"secret#123",
+        "expiration": 300
     }
 }

@@ -5,6 +5,7 @@ var productHandler = require('../handlers/productsHandler');
 var customerHandler = require('../handlers/customerHandler');
 var loginHandler = require('../handlers/loginHandler');
 let jwtHelper = require('../jwtHelper');
+let config = require('../config.json')
 const SECRET_KEY = "secret#123";
 /******************************************************************/
 router.get('/', authenticateToken, productHandler.getProductList);
@@ -21,7 +22,7 @@ async function authenticateToken(req, res, next) {
         let token = req.headers['authorization'];
         if (token == null || token == undefined) res.sendStatus(401)
         console.log(token)
-        let payload = await jwtHelper.verifyToken(token, SECRET_KEY);
+        let payload = await jwtHelper.verifyToken(token, config.jwt.SECRET_KEY);
         req.payload = payload;
         next();
     } catch (err) {

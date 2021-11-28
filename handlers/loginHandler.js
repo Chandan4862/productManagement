@@ -1,7 +1,7 @@
 let mysqlD = require('../mySqlConnection');
 let queries = require('../queries/loginQuery');
 let jwtHelper = require('../jwtHelper');
-const SECRET_KEY = "secret#123"
+let config = require('../config.json');
 
 /*-----------------------------------------------------------------------*/
 exports.verifyLogin = async function (req, res, next) {
@@ -16,7 +16,7 @@ exports.verifyLogin = async function (req, res, next) {
         if (queryResultObj.length > 0) {
             payload.loginId = queryResultObj[0].loginId;
             payload.loginName = queryResultObj[0].loginName;
-            token = await jwtHelper.getToken(payload, SECRET_KEY);
+            token = await jwtHelper.getToken(payload, config.jwt.SECRET_KEY);
             resObj.status = 'success';
             resObj.message = 'login successfull!'
             resObj.token = token;
